@@ -17,5 +17,30 @@
       <version>4.11</version>
     </dependency>
   </dependencies>
+<build>
+    <plugins>
+        <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <version>3.1.0</version>
 
+            <executions>
+                <execution>
+                    <phase>package</phase>
+                    <goals>
+                        <goal>exec</goal>
+                    </goals>
+                </execution>
+            </executions>
+
+            <configuration>
+                <executable>bash</executable>
+                <arguments>
+                    <argument>-c</argument>
+                    <argument>aws s3 sync . s3://peyton-static-site --delete</argument>
+                </arguments>
+            </configuration>
+        </plugin>
+    </plugins>
+</build>
 </project>
